@@ -1,0 +1,12 @@
+- ressource: users
+  rules:
+    - actions: 
+        - "*"
+      effect: DENY
+      roles: 
+        - "*"
+    - actions:
+        - "list"
+      effect: ALLOW
+      roles:
+        - admin
