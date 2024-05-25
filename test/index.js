@@ -25,7 +25,7 @@ new Promise(async resolve => {
     });
     await server.start();
 
-    loadPolicies("./test/policies");
+    loadPolicies("test/policies");
 
     app.use("/graphql", cors(), express.json({ limit: '50mb' }),
         expressMiddleware(server, {
@@ -34,13 +34,19 @@ new Promise(async resolve => {
             const user = users.find(({id}) => id === 1);
 
             return {
-                permission: new PermissionManager({ me: user })
+                permission: new PermissionManager({
+                    me: user,
+                    dataSource: {
+                        name: "MONGOOSE",
+                        instance: "rzq"
+                    }
+                })
             }
           }
         })
     );
 
     const port = 8080;
-    httpServer.listen({ port }, resolve);
+    httpServer.listen({ port });
     resolve(port);
-}).then(port => console.log(`🚀  Server ready at http://localhost:${port}`))
+}).then(port => console.log(`🚀  Server ready at http://localhost:${port}/graphql`))

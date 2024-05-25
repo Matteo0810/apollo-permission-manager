@@ -9,7 +9,7 @@ module.exports = gql`
         """
         Fetch user list from the database
         """
-        fetchUsers: [User!] @requirePermission(ressource: "users", actions: ["list"])
+        fetchUsers: [User!] @requirePermission(ressourceName: "users", ressourceId: "*" actions: ["list"])
     }
 
     type Mutation {
