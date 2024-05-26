@@ -1,8 +1,12 @@
 {
-  "name": "permission-manager",
+  "name": "apollo-permission-manager",
   "version": "1.0.0",
-  "description": "",
+  "description": "A basic ApolloGraphQL permission manager that works with MongoDB",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Matteo0810/apollo-permission-manager.git"
+  },
   "scripts": {
     "test": "nodemon --exec 'npm run start'",
     "start": "node --env-file=test/.env test/index.js"
