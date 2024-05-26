@@ -1,6 +1,7 @@
 const express = require("express");
 const http = require("http");
 const cors = require("cors");
+const {default: mongoose} = require("mongoose");
 
 const { expressMiddleware } = require("@apollo/server/express4");
 const { ApolloServerPluginDrainHttpServer } = require("@apollo/server/plugin/drainHttpServer");
@@ -11,6 +12,7 @@ const { typeDefs, resolvers } = require("./schema");
 const { applyPermissionsDirective, PermissionManager, loadPolicies } = require("../lib");
 
 const users = require("./database/users.json");
+const databases = require("./services/databases");
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -25,6 +27,8 @@ new Promise(async resolve => {
     });
     await server.start();
 
+    await databases.mongoose.connect();
+
     loadPolicies("test/policies");
 
     app.use("/graphql", cors(), express.json({ limit: '50mb' }),
@@ -38,7 +42,7 @@ new Promise(async resolve => {
                     me: user,
                     dataSource: {
                         name: "MONGOOSE",
-                        instance: "rzq"
+                        instance: mongoose
                     }
                 })
             }

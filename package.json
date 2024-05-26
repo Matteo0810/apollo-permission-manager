@@ -1,10 +1,11 @@
 {
-  "name": "permissionmanager",
+  "name": "permission-manager",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon test/index.js"
+    "test": "nodemon --exec 'npm run start'",
+    "start": "node --env-file=.env test/index.js"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "graphql": "^16.8.1",
+    "mongoose": "^8.4.0",
     "nodemon": "^3.1.0"
   }
 }

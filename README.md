@@ -1,1 +1,1 @@
-# Permission Manger
+# Permission Manager

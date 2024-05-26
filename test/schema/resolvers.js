@@ -3,10 +3,11 @@ const users = require("../database/users.json");
 
 module.exports = {
     Query: {
-        ...permissionSchema.resolvers,
+        ...permissionSchema.resolvers.Query,
         fetchUsers: () => users
     },
     Mutation: {
+        ...permissionSchema.resolvers.Mutation,
         addUser: (_, {user}) => {
             // @todo check permission
 
